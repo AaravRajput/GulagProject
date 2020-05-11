@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="icon" type="image/png" href="/Gulag.png">
+
     {% block head %}{% endblock %}
 </head>
-<body>
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary rounded-bottom sticky-top">
+      <a class="navbar-brand border text-light bg-dark rounded px-3" href="/">
+        GulagPy
+      </a>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/app">App</a>
+        <a class="nav-item nav-link" href="/about">About</a>
+      </div>
+    </nav>
+
 
     <div class="container">
         {% block body %}{% endblock %}
