@@ -3,22 +3,27 @@
 {% block head %}
 
 <title>GulagPY</title>
+<link rel="icon" type="image/png" href="static/img/Gulag.png">
 
 {% endblock %}
 
 {% block body %}
 
   <div class="jumbotron bg-secondary my-4">
+    <img class="float-right" src="/static/img/Gulag.png">
     <h1 class="display-4">Welcome,</h1>
     <hr class="my-4 bg-dark">
     <p class="lead">
       GulagPy is a prison management web-app developped in python using the flask framework, bootstrap
-      and some simple CSV file handling. The Github Repo for the project is linked to in the About section
-      along with the e-mails of the devs.
+      and some simple CSV file handling. To find out how to use the app please refer the About section.
+      The Github Repo for the project is linked to in the Contact Us section along with the e-mails of the devs.
+      Please feel free to give us a feedback and rating.
     </p>
-    <img class="d-inline" src="/static/img/Gulag.png">
-    <a class="btn btn-primary d-inline mx-2" href="/app">Go To App</a>
-    <a class="btn btn-warning d-inline mx-2" href="/about">About</a>
+    <div class="card-footer bg-secondary">
+      <a class="btn btn-primary d-inline m-2" href="/app">Go To App</a>
+      <a class="btn btn-info d-inline m-2" href="/about">About</a>
+      <a class="btn btn-warning d-inline m-2" href="/contact">Contact Us</a>
+    </div>
   </div>
 
 {% endblock %}
