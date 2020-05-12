@@ -1,0 +1,16 @@
+P_ID,NAME,AGE,GENDER,HEIGHT,CONTACT,RELEASE,C_ID,CRIME
+257,Andirik Sidorov,47,F,167,3454668754,2080-11-27,302,murder
+258,Dimitri Popov,34,M,156,84646546454,2060-06-15,278,drug traficking
+259,Sergio Marquina,53,M,145,65461321665,2080-12-05,302,murder
+260,Igor Vasuiev,75,F,156,15664694151,2030-05-11,349,robbery
+261,Orel Fedorov,22,F,148,45684684465,2026-07-16,221,burglary
+262,Seriozhenka Morozov,31,M,136,65145615151,2060-08-30,278,drug traficking
+263,Tatiana Kozlov,35,F,187,4654864512,2023-07-14,107,Assault on officer
+264,Tomek Novikof,36,M,146,49476843125,2030-02-22,349,robbery
+265,Yurek Ibiza,54,M,169,65841651234,2035-04-24,445,kidnapping
+266,Zina Stepanov,56,F,111,64484515154,2045-06-16,456,hacking
+268,Zion Alekhin,55,F,176,84562654254,2080-02-19,302,murder
+268,Sofia Smirnoff,25,F,156,54565484521,2023-07-18,107,Assault on officer
+269,Vasil Igonov,23,M,186,548654432544,2060-10-26,278,drug traficking
+270,Stefan Nikolov,69,M,169,No info,2030-09-29,349,robbery
+271,Antonio Drasvik,27,M,175,45684751546,2026-10-16,221,burglary

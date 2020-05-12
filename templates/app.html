@@ -9,14 +9,43 @@
 
 {% block body %}
 
-<div class="jumbotron jumbotron-fluid bg-secondary m-2 p-3">
+<div class="jumbotron jumbotron-fluid bg-secondary m-2 border">
+
   <h1 class="display-3">GulagPy</h1>
   <div class="card-header bg-dark">
     <button class="btn btn-primary mx-2">All records</button>
-    <button class="btn btn-warning float-right mx-2">Search</button>
+    <button class="btn btn-primary">Search</button>
     <button class="btn btn-success float-right mx-2">Add</button>
   </div>
+  <table class="table">
 
+    <thead>
+      <th>Prisoner_ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Crime</th>
+      <th>Release Date</th>
+      <th></th>
+      <th></th>
+
+    </thead>
+
+    <tbody>
+      {% for i in value %}
+      <tr>
+        <th>{{ i[0] }}</th>
+        <td>{{ i[1] }}</td>
+        <td>{{ i[2] }}</td>
+        <td>{{ i[3] }}</td>
+        <td>{{ i[8] }}</td>
+        <td>{{ i[6] }}</td>
+        <td><button class="btn btn-warning">Edit</button></td>
+        <td><button class="btn btn-danger">Delete</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}
