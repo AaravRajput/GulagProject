@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ n }}</title>
+<link rel="icon" type="image/png" href="static/img/Gulag.png">
+{% endblock %}
+
+{% block body %}
+
+  <div class="jumbotron m-2">
+    <h1 class="display-2">{{ n }}</h1>
+    <div class="card">
+      <div class="card-header">
+        <p>#{{ p }}</p>
+      </div>
+      <div class="card-body">
+        <h3>Age:</h3>{{ a }}
+        <h3>Height:</h3>{{ h }}
+        <h3>Gender:</h3>{{ s }}
+        <h3>Contact:</h3>{{ c }}
+        <h3>Release-Date:</h3>{{ r }}
+        <h3>Crime:</h3>{{ cr }}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

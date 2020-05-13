@@ -13,10 +13,56 @@
 
   <h1 class="display-3">GulagPy</h1>
   <div class="card-header bg-dark">
-    <button class="btn btn-primary mx-2">All records</button>
-    <button class="btn btn-primary">Search</button>
-    <button class="btn btn-success float-right mx-2">Add</button>
+    <p>
+      <a class="btn btn-primary mx-2" href="/app">All records</a>
+      <button class="btn btn-primary" data-toggle="collapse" data-target="#query" href="#query" role="button" aria-expanded="false" aria-controls="query">Search</button>
+      <a class="btn btn-success float-right mx-2">Add</a>
+    </p>
   </div>
+
+  <div class="collapse" id="query">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <button class="btn btn-info mx-2" data-toggle="collapse" data-target="#searchByName" role="button" aria-expanded="false" aria-controls="query">Search By Name</button>
+          <button class="btn btn-info mx-2" data-toggle="collapse" data-target="#searchByID" role="button" aria-expanded="false" aria-controls="query">Search By ID</button>
+          <button class="btn btn-info mx-2" data-toggle="collapse" data-target="#searchByCase" role="button" aria-expanded="false" aria-controls="query">Search By Case</button>
+        </div>
+      </div>
+      <div class="card card-body bg-light">
+        <div class="collapse" id="searchByName">
+          <form class="my-2" action="/qByName" method="post">
+            <label for="Name">Enter Prisoner Name:</label>
+            <input type="text" name="Name">
+            <input type="submit" class="btn btn-warning" value="Query">
+          </form>
+        </div>
+        <div class="collapse" id="searchByCase">
+          <form class="my-2" action="/qByCase" method="post">
+            <label for="Case">Enter Case:</label>
+            <select name="Case">
+              <option value="302">Murder</option>
+              <option value="456">Hacking</option>
+              <option value="278">Drug Traficking</option>
+              <option value="349">Robbery</option>
+              <option value="221">Burglary</option>
+              <option value="107">Assault on officer</option>
+              <option value="445">Kidnapping</option>
+            </select>
+            <input type="submit" class="btn btn-warning" value="Query">
+          </form>
+        </div>
+        <div class="collapse" id="searchByID">
+          <form class="my-2" action="/qByID" method="post">
+            <label for="ID">Enter Prisoner ID:</label>
+            <input type="text" name="ID">
+            <input type="submit" class="btn btn-warning" value="Query">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <table class="table">
 
     <thead>
@@ -40,7 +86,12 @@
         <td>{{ i[3] }}</td>
         <td>{{ i[8] }}</td>
         <td>{{ i[6] }}</td>
-        <td><button class="btn btn-warning">Edit</button></td>
+        <td>
+          <form action='/details' method='post'>
+            <input value='{{ i[0] }}' type='text' name='P_ID' class='collapse'>
+            <input type='submit' class="btn btn-info" value='View More'>
+          </form>
+        </td>
         <td><button class="btn btn-danger">Delete</button></td>
       </tr>
       {% endfor %}
