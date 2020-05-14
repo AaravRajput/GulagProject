@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import displayrecords as dr
 import detailfetch as df
+import VerifyCred as VCr
+import iohandle as GOD
 
 app = Flask(__name__)
 
@@ -53,7 +55,15 @@ def about_page():
 
 @app.route('/del',methods=['POST'])
 def del_rec():
-    return redirect(url_for('app_page_main'))
+    if request.method == 'POST':
+        pid = request.form['PP_ID']
+        e = request.form['usr']
+        p = request.form['pswdsd']
+        if VCr.verifyCred(e,p):
+            GOD.delRec(pid)
+            return redirect(url_for('app_page_main'))
+        else:
+            return redirect(url_for('app_page_main'))
 
 @app.route('/add',methods=['POST'])
 def add_rec():

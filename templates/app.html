@@ -88,44 +88,21 @@
         <td>{{ i[6] }}</td>
         <td>
           <form action='/details' method='post'>
-            <input value='{{ i[0] }}' type='text' name='P_ID' class='collapse'>
+            <input value={{ i[0] }} type='text' name='P_ID' class='collapse'>
             <input type='submit' class="btn btn-info" value='View More'>
           </form>
         </td>
-        <td><button class="btn btn-danger" data-toggle="modal" data-target="#DelRec">Delete</button></td>
-        <div class="modal" id="DelRec" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content  border-danger">
-              <div class="modal-header">
-                <h5 class="modal-title text-danger">Delete Record</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <form action="/del" method='POST'>
-                <div class="modal-body">
-                  <div class="form-group">
-                    <label for="emailid">Email address</label>
-                    <input type="email" class="form-control" id="emailid" name="emailid" aria-describedby="emailHelp" required>
-                    <small id="emailHelp" class="form-text text-muted">Only Developers can delete records...</small>
-                  </div>
-                  <div class="form-group">
-                    <label for="pswdsd">Password</label>
-                    <input type="password" class="form-control" id="pswdsd" name="pswdsd">
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <input type="submit" class="btn btn-outline-danger" value="Delete Record">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <td>
+          <button class="btn btn-danger" onclick="$('#Smite').val( {{i[0]}} );" id="GodModeSmite" data-toggle="modal" data-target="#DelRec">Delete</button>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
+
+
+
 <div class="modal p-3" id="AddRec" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -182,4 +159,37 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="modal" id="DelRec" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content  border-danger">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Delete Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/del" method='POST'>
+        <input type="hidden" name="PP_ID" id="Smite">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="usr">Username: </label>
+            <input type="username" class="form-control" id="usr" name="usr" aria-describedby="warn" required>
+            <small id="warn" class="form-text text-muted">Only Developers can delete records...</small>
+          </div>
+          <div class="form-group">
+            <label for="pswdsd">Password</label>
+            <input type="password" class="form-control" id="pswdsd" name="pswdsd">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-danger" value="Delete Record">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

@@ -7,7 +7,6 @@ def displayAll():
         for i in reco:
             rec.append(i)
         rec.pop(0)
-        rec.pop(-1)
     return rec
 
 def displayByName(name):
