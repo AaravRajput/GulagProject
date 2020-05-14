@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-import modules.displayrecords as dr
-import modules.detailfetch as df
+import displayrecords as dr
+import detailfetch as df
 
 app = Flask(__name__)
 
