@@ -9,14 +9,14 @@
 
 {% block body %}
 
-<div class="jumbotron jumbotron-fluid bg-secondary m-2 border">
+<div class="jumbotron jumbotron-fluid bg-secondary m-2 border p-3">
 
-  <h1 class="display-3">GulagPy</h1>
+  <h1 class="display-3 text-center">GulagPy</h1>
   <div class="card-header bg-dark">
     <p>
       <a class="btn btn-primary mx-2" href="/app">All records</a>
       <button class="btn btn-primary" data-toggle="collapse" data-target="#query" href="#query" role="button" aria-expanded="false" aria-controls="query">Search</button>
-      <a class="btn btn-success float-right mx-2">Add</a>
+      <button class="btn btn-success float-right mx-2" data-toggle="modal" data-target="#AddRec">Add</button>
     </p>
   </div>
 
@@ -92,11 +92,94 @@
             <input type='submit' class="btn btn-info" value='View More'>
           </form>
         </td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><button class="btn btn-danger" data-toggle="modal" data-target="#DelRec">Delete</button></td>
+        <div class="modal" id="DelRec" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content  border-danger">
+              <div class="modal-header">
+                <h5 class="modal-title text-danger">Delete Record</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form action="/del" method='POST'>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="emailid">Email address</label>
+                    <input type="email" class="form-control" id="emailid" name="emailid" aria-describedby="emailHelp" required>
+                    <small id="emailHelp" class="form-text text-muted">Only Developers can delete records...</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="pswdsd">Password</label>
+                    <input type="password" class="form-control" id="pswdsd" name="pswdsd">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn-outline-danger" value="Delete Record">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
-
+<div class="modal p-3" id="AddRec" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success">Add A Record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/add" method='POST'>
+        <div class="modal-body p-3 m-2">
+            <div class="form-group row form-row">
+              <label for="P-name"><span class="text-danger">*</span>Name:</label>
+              <div class="col-7"><input type="text" class="form-control" id="P-name" name="P-name" required></div>
+            </div>
+            <div class="form-group row form-row">
+              <label for="P-age">Age: </label>
+              <div class="col-2"><input type="number" class="form-control" id="P-age" name="P-age"></div>
+              <label for="Gender"><span class="text-danger">*</span>Gender:</label>
+              <div class="col"><select type="text" class="form-control" id="Gender" name="Gender" required>
+                <option selected disabled value="">Select</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Others</option>
+              </select></div>
+              <div class="invalid-feedback">
+                Please select a valid gender.
+              </div>
+              <label for="Ht"><span class="text-danger">*</span>Height:</label>
+              <div class="col-3"><input type="number" class="form-control" id="Ht" name="Ht" required></div>
+            </div>
+            <label for="Contact">Contact: </label>
+            <input type="text" class="form-control" id="Contact" name="Contact">
+            <label for="Crime"><span class="text-danger">*</span>Crime:</label>
+            <select type="text" class="form-control" id="Crime" name="Crime" required>
+              <option selected disabled value="">Select</option>
+              <option value="302">Murder</option>
+              <option value="456">Hacking</option>
+              <option value="278">Drug Traficking</option>
+              <option value="349">Robbery</option>
+              <option value="221">Burglary</option>
+              <option value="107">Assault on officer</option>
+              <option value="445">Kidnapping</option>
+            </select>
+            <div class="invalid-feedback">
+              Please select a valid gender.
+            </div>
+            <small class="text-danger">*Required Fields</small>
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-outline-success" value="Add Record">
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

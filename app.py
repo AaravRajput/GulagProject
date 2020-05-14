@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request
-import displayrecords as dr
-import detailfetch as df
+from flask import Flask, render_template, request, redirect, url_for
+import modules.displayrecords as dr
+import modules.detailfetch as df
 
 app = Flask(__name__)
 
@@ -51,6 +51,13 @@ def app_dispplayDetails():
 def about_page():
     return render_template('about.html')
 
+@app.route('/del',methods=['POST'])
+def del_rec():
+    return redirect(url_for('app_page_main'))
+
+@app.route('/add',methods=['POST'])
+def add_rec():
+    return redirect(url_for('app_page_main'))
 
 if __name__ == "__main__":
     app.run(debug=True)

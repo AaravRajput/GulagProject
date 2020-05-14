@@ -2,7 +2,7 @@ import csv
 
 def displayAll():
     rec=[]
-    with open('PRISONDATA.csv') as pD:
+    with open('static\PRISONDATA.csv') as pD:
         reco=csv.reader(pD)
         for i in reco:
             rec.append(i)
