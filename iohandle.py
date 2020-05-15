@@ -2,6 +2,50 @@ import LegalBounds as LB
 from datetime import date
 import csv
 import os
+import pickle
+import ftplib
+
+Fusr = 'unaux_25781641'
+Fhost = 'ftp.unaux.com'
+Fpwd = 'FTPxxGulag56'
+
+def sendData():
+    with open("PRISONDATA.csv") as loc_file:
+        rec = csv.reader(loc_file)
+        global l
+        l = []
+        for i in rec:
+            l.append(i)
+
+    with open("DATA.bin", 'wb') as server_file:
+        pickle.dump(l, server_file)
+
+    with ftplib.FTP(Fhost, Fusr, Fpwd) as ftp:
+        print(ftp.getwelcome())
+        file = 'DATA.bin'
+        with open(file, 'rb') as fp:
+            ftp.storbinary('STOR '+'/htdocs/DataFiles/'+file, fp)
+
+    os.remove("DATA.bin")
+
+def sendLogs():
+    with open("PrisonLogs.csv") as loc_file:
+        rec = csv.reader(loc_file)
+        global l
+        l = []
+        for i in rec:
+            l.append(i)
+
+    with open("LOG_DATA.bin", 'wb') as server_file:
+        pickle.dump(l, server_file)
+
+    with ftplib.FTP(Fhost, Fusr, Fpwd) as ftp:
+        print(ftp.getwelcome())
+        file = 'LOG_DATA.bin'
+        with open(file, 'rb') as fp:
+            ftp.storbinary('STOR '+'/htdocs/DataFiles/'+file, fp)
+
+    os.remove("LOG_DATA.bin")
 
 
 def delRec(id,o):
@@ -26,6 +70,8 @@ def delRec(id,o):
     with open('PrisonLogs.csv','a',newline='') as log:
         console=csv.writer(log)
         console.writerow(["RECORD DELETED",delrow, o, str(date.today()) ])
+    sendData()
+    sendLogs()
 
 
 def addRec(n,a,g,h,c,dy,C,o):
@@ -61,6 +107,9 @@ def addRec(n,a,g,h,c,dy,C,o):
     with open('PrisonLogs.csv','a',newline='') as log:
         console=csv.writer(log)
         console.writerow(["RECORD Added",addrow, o, str(date.today()) ])
+
+    sendData()
+    sendLogs()
 
 def viewLogs():
     l=[]

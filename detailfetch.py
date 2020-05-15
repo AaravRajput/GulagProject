@@ -1,13 +1,8 @@
 import csv
+import displayrecords as disr
 
 def RecordsMain():
-    rec=[]
-    with open('PRISONDATA.csv') as pD:
-        reco=csv.reader(pD)
-        for i in reco:
-            rec.append(i)
-        rec.pop(0)
-    return rec
+    return disr.displayAll()
 
 def fetchName(pid):
     for i in RecordsMain():

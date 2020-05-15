@@ -94,6 +94,7 @@ def view_modlog():
         u = request.form['devusr']
         p = request.form['pswdwd']
         if VCr.verifyCred(u,p):
+            dr.receiveLogs()
             return render_template('modlogs.html',log=GOD.viewLogs())
         else:
             return redirect(url_for('app_page_main'))
