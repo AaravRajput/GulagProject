@@ -4,14 +4,18 @@ import csv
 import os
 
 
-def delRec(id):
+def delRec(id,o):
     with open('PRISONDATA.csv','r') as pD:
         rec = csv.reader(pD)
         with open('gulag.csv','w',newline="") as gulag:
+            global delrow
+            delrow=[]
             log = csv.writer(gulag)
             for i in rec:
                 if not i[0]==id:
                     log.writerow(i)
+                else:
+                    delrow.append(i)
     with open('gulag.csv','r') as ungulag:
         unrec = csv.reader(ungulag)
         with open('PRISONDATA.csv','w',newline="") as unpD:
@@ -19,9 +23,12 @@ def delRec(id):
             for j in unrec:
                 log.writerow(j)
     os.remove('gulag.csv')
+    with open('PrisonLogs.csv','a',newline='') as log:
+        console=csv.writer(log)
+        console.writerow(["RECORD DELETED",delrow, o, str(date.today()) ])
 
 
-def addRec(n,a,g,h,c,dy,C):
+def addRec(n,a,g,h,c,dy,C,o):
     with open("PRISONDATA.csv",'r') as pIn:
         csv_loader = csv.reader(pIn)
         P_ID = 0
@@ -46,9 +53,20 @@ def addRec(n,a,g,h,c,dy,C):
         Case = LB.returnCase(int(C))
         pD = LB.returnPd(int(C))
         Rel = str(date(day = d, month = m, year = y + pD))
+        global addrow
+        addrow=[int(P_ID)+1,Name,Age,Sex,Ht,Contact,Rel,CID,Case]
 
-        row=[int(P_ID)+1,Name,Age,Sex,Ht,Contact,Rel,CID,Case]
+        csv_console.writerow(addrow)
 
-        csv_console.writerow(row)
+    with open('PrisonLogs.csv','a',newline='') as log:
+        console=csv.writer(log)
+        console.writerow(["RECORD Added",addrow, o, str(date.today()) ])
 
-    return True
+def viewLogs():
+    l=[]
+    with open('PrisonLogs.csv','r') as log:
+        logger=csv.reader(log)
+        for i in logger:
+            l.append(i)
+
+    return l

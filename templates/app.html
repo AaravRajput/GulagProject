@@ -9,7 +9,7 @@
 
 {% block body %}
 
-<div class="jumbotron jumbotron-fluid bg-secondary m-2 border p-3">
+<div class="jumbotron bg-secondary m-2 border p-3">
 
   <h1 class="display-3 text-center">GulagPy</h1>
   <div class="card-header bg-dark">
@@ -99,6 +99,14 @@
       {% endfor %}
     </tbody>
   </table>
+  <div class="card-footer m-0">
+    <button class="btn text-dark float-left" data-toggle="modal" data-target="#ModLogIn">Logs</button>
+    <form action='/raw' method='POST'>
+      <div class="form-group form-row float-right">
+        <button class='btn text-dark'>Raw Data</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 
@@ -136,14 +144,14 @@
             </div>
             <label for="Contact">Contact: </label>
             <input type="text" class="form-control" id="Contact" name="Contact">
-            <label for="Date"><span class="text-danger">*</span>Date of Emprisonment:</label>
+            <label for="Date"><span class="text-danger">*</span>Date of Imprisonment:</label>
             <input type="date" class="form-control" id="Date" name="Date">
             <label for="Crime"><span class="text-danger">*</span>Crime:</label>
             <select type="text" class="form-control" id="Crime" name="Crime" required>
               <option selected disabled value="">Select</option>
               <option value="302">Murder</option>
               <option value="456">Hacking</option>
-              <option value="278">Drug Traficking</option>
+              <option value="278">Drug Trafficking</option>
               <option value="349">Robbery</option>
               <option value="221">Burglary</option>
               <option value="107">Assault on officer</option>
@@ -194,4 +202,32 @@
   </div>
 </div>
 
+<div class="modal" id="ModLogIn" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content  border-info bg-warning">
+      <div class="modal-header">
+        <h5 class="modal-title text-info">Access Logs</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/modlog" method='POST'>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="devusr">Username: </label>
+            <input type="username" class="form-control" id="devusr" name="devusr" aria-describedby="devwarn" required>
+            <small id="devwarn" class="form-text text-muted">Only Developers can access the modlog...</small>
+          </div>
+          <div class="form-group">
+            <label for="pwdwd">Password</label>
+            <input type="password" class="form-control" id="pwdwd" name="pswdwd">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-info" value="View">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
